@@ -10,11 +10,27 @@ import UIKit
 
 class DetailViewController: UITableViewController {
     
-    let book: Book
+    var book: Book
+    @IBOutlet var readMeButton: UIButton!
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var authorLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var reviewTextView: UITextView!
+    
+    
+    @IBAction func toggleReadMe() {
+      book.readMe.toggle()
+      let image = book.readMe
+        ? LibrarySymbol.bookmarkFill.image
+        : LibrarySymbol.bookmark.image
+      readMeButton.setImage(image, for: .normal)
+    }
+    
+    @IBAction func saveChanges() {
+      Library.update(book: book)
+      navigationController?.popViewController(animated: true)
+    }
+    
     
     
     @IBAction func updateImage() {
@@ -32,17 +48,21 @@ class DetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        imageView.image = book.image
+        imageView.image = book.image ?? LibrarySymbol.letterSquare(letter: book.title.first).image
         imageView.layer.cornerRadius = 16
-        
-        if let review = book.review {
-            reviewTextView.text = review
-            
-        }
-        
         titleLabel.text = book.title
         authorLabel.text = book.author
-        reviewTextView.addDonButton()
+        
+        if let review = book.review {
+          reviewTextView.text = review
+        }
+        
+        let image = book.readMe
+          ? LibrarySymbol.bookmarkFill.image
+          : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
+
+        //reviewTextView.addDoneButton()
     }
     
     required init?(coder: NSCoder) { fatalError("This never be called") }
@@ -62,7 +82,8 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
-        Library.saveImage(selectedImage, forBook: book)
+        book.image = selectedImage
+       
         dismiss(animated: true)
     }
     
@@ -70,7 +91,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
 
 extension DetailViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
-        textView.resignFirstResponder()
+        book.review = textView.text
     }
 }
 

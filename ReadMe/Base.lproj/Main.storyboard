@@ -37,6 +37,9 @@
                                                             <state key="normal" image="bookmark.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="48"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="toggleReadMe" destination="YFx-JR-q9R" eventType="touchUpInside" id="1kK-oS-W9G"/>
+                                                            </connections>
                                                         </button>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vsr-A8-57f">
                                                             <rect key="frame" x="42" y="0.0" width="332" height="35"/>
@@ -150,7 +153,13 @@
                             <outlet property="delegate" destination="YFx-JR-q9R" id="OBw-RM-7gF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="OAa-Tv-MSd"/>
+                    <navigationItem key="navigationItem" id="OAa-Tv-MSd">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="z70-WM-eDW">
+                            <connections>
+                                <action selector="saveChanges" destination="YFx-JR-q9R" id="kPR-tw-Xa8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorLabel" destination="NNv-st-JFm" id="WAy-nd-E6W"/>
                         <outlet property="imageView" destination="chm-01-W2p" id="z0P-yt-ihW"/>
@@ -286,7 +295,18 @@
                             <outlet property="delegate" destination="Rzo-8W-aVB" id="AFS-XX-hRT"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="m2k-fi-Ret"/>
+                    <navigationItem key="navigationItem" id="m2k-fi-Ret">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NMZ-IM-SnY">
+                            <connections>
+                                <action selector="cancel" destination="Rzo-8W-aVB" id="4d5-rX-Dh4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RpN-o4-KMj">
+                            <connections>
+                                <action selector="saveNewBook" destination="Rzo-8W-aVB" id="kcA-Na-RBP"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="authorTextField" destination="buA-3T-Cdi" id="zcZ-fk-hQI"/>
                         <outlet property="bookImageView" destination="9V3-qa-l7O" id="Io3-vg-ALY"/>
@@ -364,13 +384,13 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LDs-gB-SgB">
                                                     <rect key="frame" x="88" y="22" width="286" height="46.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRv-aK-4bE">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRv-aK-4bE">
                                                             <rect key="frame" x="0.0" y="0.0" width="286" height="23"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGD-K8-M1l">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGD-K8-M1l">
                                                             <rect key="frame" x="0.0" y="26" width="286" height="20.5"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -441,10 +461,14 @@
             <point key="canvasLocation" x="537.68115942028987" y="131.91964285714286"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="ReadMe Tint Color"/>
     <resources>
         <image name="book.circle" catalog="system" width="128" height="121"/>
         <image name="bookmark.fill" catalog="system" width="112" height="128"/>
         <image name="t.square" catalog="system" width="128" height="114"/>
+        <namedColor name="ReadMe Tint Color">
+            <color red="1" green="0.62400001287460327" blue="0.038999993354082108" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

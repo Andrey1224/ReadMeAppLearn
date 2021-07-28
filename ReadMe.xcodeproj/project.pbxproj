@@ -18,6 +18,7 @@
 		CCFE018826B0D1BD004D1623 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE018726B0D1BD004D1623 /* DetailViewController.swift */; };
 		CCFE018A26B0E42C004D1623 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE018926B0E42C004D1623 /* BookCell.swift */; };
 		CCFE018C26B1FB31004D1623 /* NewBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCFE018B26B1FB31004D1623 /* NewBookViewController.swift */; };
+		CCFE018E26B20C93004D1623 /* LibraryHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCFE018D26B20C93004D1623 /* LibraryHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		CCFE018726B0D1BD004D1623 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CCFE018926B0E42C004D1623 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		CCFE018B26B1FB31004D1623 /* NewBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBookViewController.swift; sourceTree = "<group>"; };
+		CCFE018D26B20C93004D1623 /* LibraryHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LibraryHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				CCFE016F26B0C021004D1623 /* AppDelegate.swift */,
 				CCFE017126B0C021004D1623 /* SceneDelegate.swift */,
 				CCFE017326B0C021004D1623 /* LibraryViewController.swift */,
+				CCFE018D26B20C93004D1623 /* LibraryHeaderView.xib */,
 				CCFE018926B0E42C004D1623 /* BookCell.swift */,
 				CCFE017526B0C021004D1623 /* Main.storyboard */,
 				CCFE018B26B1FB31004D1623 /* NewBookViewController.swift */,
@@ -142,6 +145,7 @@
 				CCFE017C26B0C021004D1623 /* LaunchScreen.storyboard in Resources */,
 				CCFE017926B0C021004D1623 /* Assets.xcassets in Resources */,
 				CCFE017726B0C021004D1623 /* Main.storyboard in Resources */,
+				CCFE018E26B20C93004D1623 /* LibraryHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
