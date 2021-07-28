@@ -19,16 +19,16 @@ class DetailViewController: UITableViewController {
     
     
     @IBAction func toggleReadMe() {
-      book.readMe.toggle()
-      let image = book.readMe
-        ? LibrarySymbol.bookmarkFill.image
-        : LibrarySymbol.bookmark.image
-      readMeButton.setImage(image, for: .normal)
+        book.readMe.toggle()
+        let image = book.readMe
+            ? LibrarySymbol.bookmarkFill.image
+            : LibrarySymbol.bookmark.image
+        readMeButton.setImage(image, for: .normal)
     }
     
     @IBAction func saveChanges() {
-      Library.update(book: book)
-      navigationController?.popViewController(animated: true)
+        Library.update(book: book)
+        navigationController?.popViewController(animated: true)
     }
     
     
@@ -48,6 +48,7 @@ class DetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        super.viewDidLoad()
         imageView.image = book.image ?? LibrarySymbol.letterSquare(letter: book.title.first).image
         imageView.layer.cornerRadius = 16
         titleLabel.text = book.title
@@ -62,7 +63,7 @@ class DetailViewController: UITableViewController {
           : LibrarySymbol.bookmark.image
         readMeButton.setImage(image, for: .normal)
 
-        //reviewTextView.addDoneButton()
+        reviewTextView.addDoneButton()
     }
     
     required init?(coder: NSCoder) { fatalError("This never be called") }
@@ -83,7 +84,7 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
         guard let selectedImage = info[.editedImage] as? UIImage else { return }
         imageView.image = selectedImage
         book.image = selectedImage
-       
+        
         dismiss(animated: true)
     }
     
@@ -99,15 +100,12 @@ extension DetailViewController: UITextViewDelegate {
 
 
 extension UITextView {
-    
-    func addDonButton() {
+    func addDoneButton() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let flexSpaace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.resignFirstResponder))
-        toolbar.items = [flexSpaace, doneButton]
+        toolbar.items = [flexSpace, doneButton]
         self.inputAccessoryView = toolbar
-
     }
-    
 }
