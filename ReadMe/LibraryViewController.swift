@@ -14,7 +14,7 @@ class LibraryViewController: UITableViewController {
     @IBSegueAction func showDetailView(_ coder: NSCoder) -> DetailViewController? {
         guard let indexPath = tableView.indexPathForSelectedRow
         else { fatalError("Nothing selected!") }
-        let book = Library.books[indexPath.row]
+        let book = Library.books[indexPath.row - 1]
         return DetailViewController(coder: coder, book: book)
     }
     
@@ -33,15 +33,25 @@ class LibraryViewController: UITableViewController {
     
 //MARK:- DataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Library.books.count
+        return Library.books.count + 1
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BookCell", for: indexPath)
-        let book = Library.books[indexPath.row]
-        cell.textLabel?.text = book.title
-        cell.imageView?.image = book.image
+        
+        if indexPath == IndexPath(row: 0, section: 0) {
+            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NewBookCell", for: indexPath)
+            return cell
+        }
+        
+       guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(BookCell.self)", for: indexPath) as? BookCell
+       else { fatalError("SSSS") }
+        let book = Library.books[indexPath.row - 1]
+        cell.titleLabel?.text = book.title
+        cell.authorLabel?.text = book.author
+        cell.bookThumbnail?.image = book.image
+        cell.bookThumbnail.layer.cornerRadius = 12
         return cell
     }
     

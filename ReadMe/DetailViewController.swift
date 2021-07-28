@@ -8,9 +8,14 @@
 import UIKit
 
 
-class DetailViewController: UIViewController {
+class DetailViewController: UITableViewController {
     
     let book: Book
+    @IBOutlet var titleLabel: UILabel!
+    @IBOutlet var authorLabel: UILabel!
+    @IBOutlet var imageView: UIImageView!
+    @IBOutlet var reviewTextView: UITextView!
+    
     
     @IBAction func updateImage() {
         
@@ -23,17 +28,21 @@ class DetailViewController: UIViewController {
         
     }
     
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var authorLabel: UILabel!
-    @IBOutlet var imageView: UIImageView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         imageView.image = book.image
+        imageView.layer.cornerRadius = 16
+        
+        if let review = book.review {
+            reviewTextView.text = review
+            
+        }
+        
         titleLabel.text = book.title
         authorLabel.text = book.author
+        reviewTextView.addDonButton()
     }
     
     required init?(coder: NSCoder) { fatalError("This never be called") }
@@ -55,6 +64,29 @@ extension DetailViewController: UIImagePickerControllerDelegate, UINavigationCon
         imageView.image = selectedImage
         Library.saveImage(selectedImage, forBook: book)
         dismiss(animated: true)
+    }
+    
+}
+
+extension DetailViewController: UITextViewDelegate {
+    func textViewDidEndEditing(_ textView: UITextView) {
+        textView.resignFirstResponder()
+    }
+}
+
+
+
+
+extension UITextView {
+    
+    func addDonButton() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let flexSpaace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.resignFirstResponder))
+        toolbar.items = [flexSpaace, doneButton]
+        self.inputAccessoryView = toolbar
+
     }
     
 }
